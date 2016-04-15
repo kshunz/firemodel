@@ -1,0 +1,25 @@
+{
+  "name": "firemodel",
+  "description": "Data models for Firebase",
+  "main": "dist/firemodel.js",
+  "authors": [
+    "Dwayne Ford"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "model",
+    "firebase",
+    "mvc",
+    "database"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
+}

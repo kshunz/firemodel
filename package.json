@@ -1,0 +1,26 @@
+{
+  "name": "firemodel",
+  "version": "0.0.1",
+  "description": "Data models for Firebase",
+  "main": "firemodel.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "keywords": [
+    "model",
+    "firebase",
+    "mvc",
+    "database"
+  ],
+  "author": "Dwayne Ford",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-bump": "^2.1.0",
+    "gulp-mocha": "^2.2.0",
+    "gulp-task-listing": "^1.0.1",
+    "gulp-util": "^3.0.7",
+    "sinon": "^1.17.3"
+  }
+}
