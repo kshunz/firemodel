@@ -1,6 +1,6 @@
 {
   "name": "firemodel",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Data models for Firebase",
   "main": "dist/firemodel.js",
   "authors": [
