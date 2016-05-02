@@ -1,4 +1,4 @@
-# firemodel
+# FIREMODEL
 Powerful Model Support for Firebase
 
 ## Getting Started
@@ -8,46 +8,52 @@ Powerful Model Support for Firebase
 ````bash
 npm install --save firebase firemodel
 ````
-
-### Setup
-
 ````js
 var Firebase = require('firebase');
 var firemodel = require('firemodel');
+````
 
-firemodel(Firebase);
+
+### Web Installation
+
+````bash
+bower install --save firemodel
+
+````
+
+### Setup
+
+------------
+
+````js
+
+firemodel(Firebase);  //--> adds "model" to the prototype
 
 var ref = new Firebase('https://...');
 
 ````
 
+
+
+
+
+
 ### Using a Model
 
 ````js
 var Member = ref.model('members');
+
+Member.set('kshunz.active', true);
+Member.set('kshunz.name.first', 'K.');
+Member.set('kshunz.name.last', 'Shunz');
+Member.save();
+
 ````
 
-----------
+
 
 #### Query API
-
 -----------
-Find (unique filter STRING, field filters ARRAY of STRING)
-````js
-Member.find('kshunz', ['username']);
-Member.results.first();  //--> 'kshunz-admin'
-````
-````js
-Member.find('kshunz');
-Member.results.first();  //--> returns entire {}
-````
-
-
-Setter
-````js
-Member.set('kshunz', { active: true });
-Member.save();
-````
 
 Getter
 ````js
@@ -55,10 +61,25 @@ Member.get('kshunz');
 Member.results.first();
 ````
 
----------
+Find (unique filter STRING, field filters ARRAY of STRING)
+````js
+Member.find();  //--> find all member records
+Member.find(['username']);  //--> find all member username
+Member.results.all();
+````
+
+Find (unique filter STRING, field filters ARRAY of STRING)
+````js
+Member.find('kshunz', ['username']);
+Member.results.first();  //--> 'kshunz'
+````
+````js
+Member.find('kshunz');
+Member.results.first();  //--> returns entire {}
+````
+
 
 #### DAVIE (delete, add, view, index, edit) API
-
 ---------
 
 [D]elete
