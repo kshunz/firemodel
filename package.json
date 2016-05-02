@@ -1,6 +1,6 @@
 {
   "name": "firemodel",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Data models for Firebase",
   "main": "firemodel.js",
   "scripts": {
@@ -26,6 +26,7 @@
     "sinon": "^1.17.3"
   },
   "dependencies": {
-    "firebase": "^2.4.2"
+    "firebase": "^2.4.2",
+    "lodash": "^4.11.2"
   }
 }
