@@ -4,8 +4,9 @@ Powerful Model Support for Firebase
 ## HELP
 --------
 
-This package is only days old.  Tests still need to be written and many things may not work yet.  Please use at your own risk and share bugs and issues on github.  I'll try to fix things ASAP!!
+This package is only days old.  Tests still need to be written and many things may not work yet.  Please use at your own risk and share bugs and issues on github.  I'll try to fix things ASAP
 
+#### [https://github.com/kshunz/firemodel/issues](https://github.com/kshunz/firemodel/issues)
 --------
 
 ## Getting Started
