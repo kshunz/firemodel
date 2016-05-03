@@ -3,7 +3,7 @@ module.exports = function (fb) {
     'use strict';
 
     fb.prototype.model = function (modelName) {
-
+        var _ = require('lodash');
         var ref = this;
         var dataQueue = [];
         var searchQueue = [];
