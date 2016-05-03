@@ -1,10 +1,14 @@
 {
   "name": "firemodel",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Data models for Firebase",
   "main": "firemodel.js",
   "scripts": {
     "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+git@github.com:kshunz/firemodel.git"
   },
   "keywords": [
     "model",
