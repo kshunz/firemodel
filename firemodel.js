@@ -7,6 +7,8 @@ module.exports = function (fb) {
         var ref = this;
         var dataQueue = [];
         var searchQueue = [];
+        var searchHistory = {};
+        var findPromise;
 
         return {
 
@@ -30,9 +32,16 @@ module.exports = function (fb) {
                 ref.child(searchKey).remove();
             },
 
-            find: function (idKey, fieldsToReturn) {
+            find: function (providedKey, fieldsToReturn) {
 
-                var searchKey = idKey.split('.');
+                var idKey = fieldsToReturn ? providedKey : '';
+
+                fieldsToReturn = providedKey && !fieldsToReturn && _.isArray(providedKey) ?
+                  providedKey : fieldsToReturn;
+
+                fieldsToReturn = fieldsToReturn || [];
+
+                var searchKey = idKey ? idKey.split('.') : [];
                 var searchFilter = {};
 
                 searchKey.unshift(modelName);
@@ -42,35 +51,76 @@ module.exports = function (fb) {
                     searchFilter[field] = true;
                 });
 
-                ref.child(searchKey).once('value', function (snapshot) {
+                findPromise = ref.child(searchKey).once('value')
+                  .then(function (snapshot) {
 
                     var result = snapshot.val();
 
                     _.forEach(result, function (val, field) {
 
-                        if (!searchFilter[field]) {
+                        if (fieldsToReturn.length > 0 && !searchFilter[field]) {
                             delete result[field];
                         }
 
                     });
 
-                    searchQueue.push(result);
+                    searchHistory[modelName] = searchQueue.push(result);
+                    console.log(searchQueue);
 
                 });
             },
 
             results: {
+                all: function (handleResults) {
+                  findPromise
+                    .then(function () {
+                      handleResults(searchQueue);
+                    });
 
-                all: function () {
-                    return searchQueue;
+                  return {
+                    log: function () {
+
+                    }()
+                  };
                 },
 
-                first: function () {
-                    return _.first(searchQueue);
+                first: function (handleResults) {
+                  findPromise
+                    .then(function () {
+                      handleResults(_.first(searchQueue));
+                    });
                 },
 
-                nth: function (n) {
-                    return searchQueue[Number(n) - 1];
+                log: function log (resultType) {
+
+                  resultType = resultType || 'all';
+
+                  var types = { all: true, first: true, nth: true };
+                  var typeExists = types[resultType];
+
+                  if(typeExists) {
+
+                    var checkResults = setInterval(function () {
+                      if(searchQueue.length > 0) {
+                        console.log(searchHistory);
+                        console.log.apply(log, searchQueue[modelName]);
+                        clearInterval(checkResults);
+                      }
+                    }, 1000);
+
+                    setTimeout(function () {
+                      clearInterval(checkResults);
+                    }, 15000);
+
+                  }
+
+                },
+
+                nth: function (n, handleResults) {
+                  findPromise
+                    .then(function () {
+                      handleResults(searchQueue[Number(n) - 1]);
+                    });
                 }
             },
 

@@ -1,6 +1,6 @@
 {
   "name": "firemodel",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Data models for Firebase",
   "main": "firemodel.js",
   "scripts": {
